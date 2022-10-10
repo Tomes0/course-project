@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-md-5">
+        <app-recepie-list></app-recepie-list>
+    </div>
+    <div class="col-md-7">
+        <app-recepie-detail *ngIf="recivedRecepie; else infoText"
+          [recepie]="recivedRecepie"></app-recepie-detail>
+        <ng-template #infoText>
+          <h1>Please select a recepie!</h1>
+        </ng-template>
+
+    </div>
+</div>
