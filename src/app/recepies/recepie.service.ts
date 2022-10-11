@@ -29,6 +29,9 @@ export class RecepieService{
     return this.recepies.slice();
   }
 
+  getRecepieById(id: number): Recepie{
+    return this.recepies.slice()[id];
+  }
 
 
 
