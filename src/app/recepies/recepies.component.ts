@@ -6,7 +6,6 @@ import { RecepieService } from './recepie.service';
   selector: 'app-recepies',
   templateUrl: './recepies.component.html',
   styleUrls: ['./recepies.component.css'],
-  providers: [RecepieService]
 })
 export class RecepiesComponent {
   recivedRecepie: Recepie;

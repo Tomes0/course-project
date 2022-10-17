@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Recepie } from '../recepie.model';
 import { RecepieService } from '../recepie.service';
 
@@ -7,13 +8,23 @@ import { RecepieService } from '../recepie.service';
   templateUrl: './recepie-list.component.html',
   styleUrls: ['./recepie-list.component.css']
 })
-export class RecepieListComponent implements OnInit {
+export class RecepieListComponent implements OnInit, OnDestroy {
   recepies: Recepie[];
+  private sub: Subscription;
 
   constructor(private recepieService: RecepieService) { }
 
   ngOnInit(): void {
-    this.recepies=this.recepieService.getRecepies();
+    this.sub = this.recepieService.recepiesChanged.subscribe(
+      (recepies: Recepie[]) => {
+        this.recepies = recepies;
+      }
+    );
+    this.recepies = this.recepieService.getRecepies();
+
   }
 
+  ngOnDestroy(): void {
+      this.sub.unsubscribe();
+  }
 }

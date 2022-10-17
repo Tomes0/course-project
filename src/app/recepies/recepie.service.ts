@@ -7,6 +7,7 @@ import { Subject } from "rxjs";
 
 @Injectable()
 export class RecepieService{
+  recepiesChanged = new Subject<Recepie[]>();
 
   private recepies: Recepie[] = [
     new Recepie('A Test Recepie',
@@ -33,6 +34,20 @@ export class RecepieService{
     return this.recepies.slice()[id];
   }
 
+  addRecepie(recepie: Recepie){
+    this.recepies.push(recepie);
+    this.recepiesChanged.next(this.recepies.slice());
+  }
+
+  updateRecepie(index: number, recepie: Recepie){
+    this.recepies[index] = recepie;
+    this.recepiesChanged.next(this.recepies.slice());
+  }
+
+  deleteRecepie(index: number){
+    this.recepies.splice(index, 1);
+    this.recepiesChanged.next(this.recepies.slice());
+  }
 
 
   constructor(private shoppingListService: ShoppingListService){}

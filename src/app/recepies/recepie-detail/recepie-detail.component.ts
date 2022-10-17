@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recepie } from '../recepie.model';
 import { ShoppingListService } from '../../shopping-list/shopping-list.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecepieService } from '../recepie.service';
 
 @Component({
@@ -15,7 +15,8 @@ export class RecepieDetailComponent implements OnInit {
 
   constructor(private shoppingListService: ShoppingListService,
               private route: ActivatedRoute,
-              private recepieService: RecepieService) { }
+              private recepieService: RecepieService,
+              private router: Router) { }
 
   addToCart(){
     this.shoppingListService.addIngredients(this.recepie.ingredients)
@@ -26,6 +27,11 @@ export class RecepieDetailComponent implements OnInit {
       this.id = +param['id'];
       this.recepie = this.recepieService.getRecepieById(this.id);
     });
+  }
+
+  onDelete(){
+    this.recepieService.deleteRecepie(this.id);
+    this.router.navigate(['../']);
   }
 
 }

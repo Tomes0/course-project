@@ -10,11 +10,12 @@ import { RecepieDetailComponent } from './recepies/recepie-detail/recepie-detail
 import { RecepieItemComponent } from './recepies/recepie-list/recepie-item/recepie-item.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/shopping-list-edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecepieStartComponent } from './recepies/recepie-start/recepie-start.component';
 import { RecepieEditComponent } from './recepies/recepie-edit/recepie-edit.component';
+import { RecepieService } from './recepies/recepie.service';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,9 @@ import { RecepieEditComponent } from './recepies/recepie-edit/recepie-edit.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [ShoppingListService],
+  providers: [ShoppingListService, RecepieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
