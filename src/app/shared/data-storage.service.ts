@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs-compat/operator/map';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Recepie } from '../recepies/recepie.model';
 import { RecepieService } from '../recepies/recepie.service';
-import { RecepiesComponent } from '../recepies/recepies.component';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +23,17 @@ export class DataStorageService{
   fetchRecepies(){
     return this.http
     .get<Recepie[]>('https://angular-course-kuti-default-rtdb.europe-west1.firebasedatabase.app/recepies.json')
-    .pipe(tap(recepies => {
+    .pipe(
+      map(recepies => {
+        return recepies.map(recepie => {
+          return{
+            ...recepie, ingredients: recepie.ingredients ? recepie.ingredients : []
+          }
+        });
+      }),
+      tap(recepies => {
       this.recepieService.setRecepies(recepies);
-    }))
+    })
+    )
   }
 }
