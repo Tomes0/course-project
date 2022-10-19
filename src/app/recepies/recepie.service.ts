@@ -9,7 +9,7 @@ import { Subject } from "rxjs";
 export class RecepieService{
   recepiesChanged = new Subject<Recepie[]>();
 
-  private recepies: Recepie[] = [
+ /*  private recepies: Recepie[] = [
     new Recepie('A Test Recepie',
     'Test Description',
     'https://www.sophisticatedgourmet.com/wp-content/uploads/2020/04/how-to-fry-an-egg-recipe-735x979.jpg',
@@ -24,7 +24,8 @@ export class RecepieService{
       new Ingredient('Buns',2),
       new Ingredient('Meat',41)
     ])
-  ];
+  ]; */
+  private recepies: Recepie[] = [];
 
   getRecepies() {
     return this.recepies.slice();
@@ -49,6 +50,10 @@ export class RecepieService{
     this.recepiesChanged.next(this.recepies.slice());
   }
 
+  setRecepies(recepies: Recepie[]){
+    this.recepies = recepies;
+    this.recepiesChanged.next(this.recepies.slice());
+  }
 
   constructor(private shoppingListService: ShoppingListService){}
 }
