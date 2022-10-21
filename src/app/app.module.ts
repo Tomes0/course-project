@@ -5,41 +5,30 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecepiesComponent } from './recepies/recepies.component';
-import { RecepieListComponent } from './recepies/recepie-list/recepie-list.component';
-import { RecepieDetailComponent } from './recepies/recepie-detail/recepie-detail.component';
-import { RecepieItemComponent } from './recepies/recepie-list/recepie-item/recepie-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/shopping-list-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DropdownDirective } from './shared/dropdown.directive';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
-import { RecepieStartComponent } from './recepies/recepie-start/recepie-start.component';
-import { RecepieEditComponent } from './recepies/recepie-edit/recepie-edit.component';
-import { RecepieService } from './recepies/recepie.service';
+import { AuthComponent } from './auth/auth.component';
+import { RecepiesModule } from './recepies/recepies.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecepiesComponent,
-    RecepieListComponent,
-    RecepieDetailComponent,
-    RecepieItemComponent,
-    ShoppingListComponent,
-    ShoppingListEditComponent,
-    DropdownDirective,
-    RecepieStartComponent,
-    RecepieEditComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    AppRoutingModule,
+    HttpClientModule,
+    RecepiesModule,
+    ShoppingListModule,
+    SharedModule,
+    CoreModule,
+    AuthModule
   ],
-  providers: [ShoppingListService, RecepieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
