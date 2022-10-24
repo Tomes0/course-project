@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { AppRoutingModule } from '../app-routing.module';
 import { AppComponent } from '../app.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthComponent } from './auth.component';
 
 const routes: Routes=[
-  { path: 'auth', component: AuthComponent}
+  { path: '', component: AuthComponent}
 ]
 
 @NgModule({
@@ -17,8 +16,8 @@ const routes: Routes=[
   imports: [
     FormsModule,
     RouterModule.forChild(routes),
+    ReactiveFormsModule,
     SharedModule,
-    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })
